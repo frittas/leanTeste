@@ -1,0 +1,83 @@
+<ion-view title="Livros" id="page4">
+    <div class="bar bar-header">
+        <button class="button button-icon icon ion-minus-circled" ng-click="data.showDelete = !data.showDelete;"></button>
+        <div class="h1 title">Livros</div>
+        <button class="button button-icon icon ion-plus-circled" ng-click="openModalCreate()"></button>
+    </div>
+    <div class="bar bar-subheader item-input-inset" no-tap-scroll="true">
+        <h2 class="title">Mostrar Indisponíveis</h2>
+        <label class="toggle toggle-positive">
+            <input type="checkbox" ng-model="data.showIndisponiveis" ng-checked="data.showIndisponiveis">
+            <div class="track">
+                <div class="handle"></div>
+            </div>
+        </label>
+    </div>
+    <ion-content padding="true" class="has-header has-subheader">
+
+        <ion-list show-delete="data.showDelete" can-swipe="true">
+            <ion-item class="item-thumbnail-left" ng-repeat="l in livros"
+            ng-if="!l.emprestado || data.showIndisponiveis">
+                <img src="http://placekitten.com/50/50">
+                <h2>{{l.titulo}}</h2>
+                <p>{{l.autor}}</p>
+                <span ng-if="!l.emprestado" class="calm">Disponível</span>
+                <span ng-if="l.emprestado" class="assertive">Indisponível</span>
+                <ion-option-button class="button-positive" ng-click="openModalEdit(l)">
+                    Edit
+                </ion-option-button>
+                <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(l)">
+                </ion-delete-button>
+            </ion-item>
+        </ion-list>
+        <div class="card" ng-if="livros.length == 0">
+            <div class="item item-text-wrap">
+                Nenhum livro disponível.
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+<script id="addLivro-modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar bar-header">
+            <h1 class="title">Novo Livro</h1>
+            <button class="button button-clear button-primary" ng-click="closeModalCreate()">Cancelar</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+            <div class="list">
+                <label class="item item-input">
+              <span class="input-label">Título</span>
+              <input ng-model="newLivro.titulo" type="text">
+            </label>
+                <label class="item item-input">
+              <span class="input-label">Autor</span>
+              <input ng-model="newLivro.autor" type="text">
+            </label>
+                <button class="button button-full button-positive" ng-click="createLivro(newLivro)">Criar</button>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+<script id="editLivro-modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar bar-header">
+            <h1 class="title">Editar Livro</h1>
+            <button class="button button-clear button-primary" ng-click="closeModalEdit()">Cancelar</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+            <div class="list">
+                <label class="item item-input">
+              <span class="input-label">Título</span>
+              <input ng-model="editLivro.titulo" type="text">
+            </label>
+                <label class="item item-input">
+              <span class="input-label">Autor</span>
+              <input ng-model="editLivro.autor" type="text">
+            </label>
+                <button class="button button-full button-positive" ng-click="editarLivro(editLivro)">Confirmar</button>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

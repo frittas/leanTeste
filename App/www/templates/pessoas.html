@@ -1,0 +1,73 @@
+<ion-view title="Pessoas" id="page4">
+    <div class="bar bar-header">
+        <button class="button button-icon icon ion-minus-circled" ng-click="data.showDelete = !data.showDelete;"></button>
+        <div class="h1 title">Pessoas</div>
+        <button class="button button-icon icon ion-plus-circled" ng-click="openModalCreate()"></button>
+    </div>
+    <ion-content padding="true" class="has-header">
+
+        <ion-list show-delete="data.showDelete" can-swipe="true">
+            <ion-item class="item item-avatar" ng-repeat="p in pessoas" ng-click="openDetails(p)">
+                <img src="http://placekitten.com/50/50">
+                <h2>{{p.nome}}</h2>
+                <p>{{p.descricao}}</p>
+
+                <ion-option-button class="button-positive" ng-click="openModalEdit(p)">
+                    Edit
+                </ion-option-button>
+                <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(p)">
+                </ion-delete-button>
+            </ion-item>
+        </ion-list>
+        <div class="card" ng-if="pessoas.length == 0">
+            <div class="item item-text-wrap">
+                Nenhuma pessoa disponível.
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+
+<script id="addPessoa-modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar bar-header">
+            <h1 class="title">Nova Pessoa</h1>
+            <button class="button button-clear button-primary" ng-click="closeModalCreate()">Cancelar</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+            <div class="list">
+                <label class="item item-input">
+              <span class="input-label">Nome</span>
+              <input ng-model="newPessoa.nome" type="text">
+            </label>
+                <label class="item item-input">
+              <span class="input-label">Descrição</span>
+              <input ng-model="newPessoa.descricao" type="text">
+            </label>
+                <button class="button button-full button-positive" ng-click="createPessoa(newPessoa)">Criar</button>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+<script id="editPessoa-modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar bar-header">
+            <h1 class="title">Editar Pessoa</h1>
+            <button class="button button-clear button-primary" ng-click="closeModalEdit()">Cancelar</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+            <div class="list">
+                <label class="item item-input">
+              <span class="input-label">Nome</span>
+              <input ng-model="editPessoa.nome" type="text">
+            </label>
+                <label class="item item-input">
+              <span class="input-label">Descrição</span>
+              <input ng-model="editPessoa.descricao" type="text">
+            </label>
+                <button class="button button-full button-positive" ng-click="editarPessoa(editPessoa)">Confirmar</button>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

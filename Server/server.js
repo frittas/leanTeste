@@ -27,6 +27,7 @@ router.route('/pessoas')
 
         var pessoa = new Pessoa();      // Cria uma nova instancia do Modelo Pessoa
         pessoa.nome = req.body.nome;
+        pessoa.descricao = req.body.descricao;
 
         pessoa.save(function (err) {
             if (err)
@@ -62,6 +63,7 @@ router.route('/pessoas/:id')
                 res.send(err);
 
             pessoa.nome = req.body.nome;
+            pessoa.descricao = req.body.descricao;
 
             // save
             pessoa.save(function (err) {

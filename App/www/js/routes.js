@@ -8,46 +8,55 @@ angular.module('app.routes', [])
     // Each state's controller can be found in controllers.js
     $stateProvider
 
-
-
-      .state('tabsController.cameraTabDefaultPage', {
-        url: '/page2',
+      .state('tabsController.emprestimos', {
+        cache: false,
+        url: '/emprestimos',
         views: {
-          'tab1': {
-            templateUrl: 'templates/cameraTabDefaultPage.html',
-            controller: 'cameraTabDefaultPageCtrl'
+          'emprestimos': {
+            templateUrl: 'templates/emprestimos.html',
+            controller: 'emprestimosCtrl'
           }
         }
       })
 
-      .state('tabsController.cartTabDefaultPage', {
-        url: '/page3',
+      .state('tabsController.livros', {
+        cache: false,
+        url: '/livros',
         views: {
-          'tab2': {
-            templateUrl: 'templates/cartTabDefaultPage.html',
-            controller: 'cartTabDefaultPageCtrl'
+          'livros': {
+            templateUrl: 'templates/livros.html',
+            controller: 'livrosCtrl'
           }
         }
       })
 
-      .state('tabsController.cloudTabDefaultPage', {
-        url: '/page4',
+      .state('tabsController.pessoas', {
+        cache: false,
+        url: '/pessoas',
         views: {
-          'tab3': {
-            templateUrl: 'templates/cloudTabDefaultPage.html',
-            controller: 'cloudTabDefaultPageCtrl'
+          'pessoas': {
+            templateUrl: 'templates/pessoas.html',
+            controller: 'pessoasCtrl'
+          }
+        }
+      })
+
+      .state('tabsController.pessoas.detalhes', {
+        url: "/:pessoaId",
+        views: {
+          'pessoas@tabsController': {
+            templateUrl: "templates/pessoaDetail.html",
+            controller: "pessoaDetailCtrl"
           }
         }
       })
 
       .state('tabsController', {
-        url: '/page1',
+        url: '/tabs',
         templateUrl: 'templates/tabsController.html',
         abstract: true
       })
-
-    $urlRouterProvider.otherwise('/page1/page2')
-
-
-
+      
+    $urlRouterProvider.otherwise('/tabs/livros')
+    
   });

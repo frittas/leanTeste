@@ -1,0 +1,48 @@
+<ion-view title="Detalhe">
+  <ion-nav-bar class="bar-stable">
+    <ion-nav-back-button class="button-icon icon ion-ios-arrow-back">Voltar</ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content padding="true" class="has-header">
+
+    <div class="list card">
+
+      <div class="item item-avatar">
+        <img src="http://placekitten.com/50/50" ">
+        <h2>{{pessoa.nome}}</h2>        
+      </div>
+
+      <div class="item item-body ">        
+        <p>
+          {{pessoa.descricao}}
+        </p>       
+      </div>
+
+    </div>
+    
+    <div class="list ">
+
+      <div class="item item-divider ">
+        Devolvidos
+      </div>
+       <div class="item " ng-repeat="e in devolvidos">
+        {{e.livro.titulo}}
+      </div>
+       <div class="item " ng-if="devolvidos.length == 0">
+        Nenhum item
+      </div>
+      <div class="item item-divider ">
+        Não Devolvidos
+      </div>
+      <div class="item " ng-repeat="e in nDevolvidos">
+        {{e.livro.titulo}}
+      </div>
+      <div class="item " ng-if="nDevolvidos.length == 0">
+        Nenhum item
+      </div>
+
+      
+
+    </div>
+
+  </ion-content>
+</ion-view>

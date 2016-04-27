@@ -1,0 +1,74 @@
+<ion-view title="Empréstimo" id="page2">
+    <div class="bar bar-header">
+        <button class="button button-icon icon ion-minus-circled" ng-click="data.showDelete = !data.showDelete;"></button>
+        <div class="h1 title">Empréstimos</div>
+        <button class="button button-icon icon ion-plus-circled" ng-click="openModalCreate()"></button>
+    </div>
+    <ion-content padding="true" class="has-header">
+        <ion-list show-delete="data.showDelete">
+            <ion-item class="" ng-repeat="e in emprestimos">
+                <p>
+                    <h2>{{e.livro.titulo}}</h2></p>
+                <p>
+                    <h2>{{e.livro.autor}}</h2></p>
+                <p>
+                    <stong>Usuário: </stong>{{e.pessoa.nome}}</p>
+                <p ng-if="e.dataEmprestimo">
+                    <stong>Data de Empréstimo: </stong>{{e.dataEmprestimo | date:"dd/MM/yyyy"}}</p>
+                <p ng-if="e.dataDevolucao">
+                    <stong>Data de Devolução: </stong>{{e.dataDevolucao | date:"dd/MM/yyyy"}}</p>
+                <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(e)">
+                </ion-delete-button>
+            </ion-item>
+        </ion-list>
+        <div class="card" ng-if="emprestimos.length == 0">
+            <div class="item item-text-wrap">
+                Nenhum empréstimo disponível.
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+
+<script id="emprestimo-modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar bar-header">
+            <h1 class="title">Novo Empréstimo</h1>
+            <button class="button button-clear button-primary" ng-click="closeModalCreate()">Cancelar</button>
+        </ion-header-bar>
+        <ion-content class="padding">
+            <div class="list">
+
+
+                <label class="item item-input" modal-select="" ng-model="newEmprestimo.pessoa" options="pessoas" modal-title="Selecione um Usuário"
+                    hide-reset="true" cancel-button="Fechar">
+                        <span class="input-label">Usuário</span>
+                        <h3>{{newEmprestimo.pessoa.nome}}</h3>
+                        <div class="option">
+                        <h2>{{option.nome}}</h2>
+                        <p>{{option.descricao}}</p>
+                    </div>
+                </label>
+
+                <label class="item item-input" modal-select="" ng-model="newEmprestimo.livro" options="livros" modal-title="Escolha um Livro"
+                    hide-reset="true" cancel-button="Fechar">
+                        <span class="input-label">Livro</span>
+                        <h3>{{newEmprestimo.livro.titulo}}</h3>
+                        <div class="option">
+                        <h2>{{option.titulo}}</h2>
+                        <p>{{option.autor}}</p>
+                    </div>
+                </label>
+
+                <label class="item item-input">
+                    <span class="input-label">Data de Empréstimo</span>
+                    <input type="date" ng-model="newEmprestimo.dataEmprestimo">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Data de Devolução</span>
+                    <input type="date" ng-model="newEmprestimo.dataDevolucao">
+                </label>
+                <button class="button button-full button-positive" ng-click="createEmprestimo(newEmprestimo)">Criar</button>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>

@@ -4,10 +4,10 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var EmprestimoSchema   = new Schema({        
-    livro: [{
+    livro: {
         type: Schema.Types.ObjectId,
         ref: 'Livro'
-    }],
+    },
     pessoa: {
         type: Schema.Types.ObjectId,
         ref: 'Pessoa'

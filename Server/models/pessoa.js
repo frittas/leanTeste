@@ -4,7 +4,8 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var PessoaSchema = new Schema({    
-    nome: String
+    nome: String,
+    descricao: String
 });
 
 module.exports = mongoose.model('Pessoa', PessoaSchema);
