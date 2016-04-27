@@ -1,0 +1,15 @@
+# temp files
+*.DS_Store
+.sass-cache
+.idea
+.tmp
+.temp
+.sass-cache
+*.swp
+*.swo
+*.log
+coverage
+
+# npm & bower
+Server/node_modules
+App/bower_components
